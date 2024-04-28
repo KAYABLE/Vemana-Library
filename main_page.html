@@ -3,9 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
+    <title>Vemana Library</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Inline styles for demonstration purposes. Replace with your external CSS */
+        .header-container {
+            text-align: center;
+        }
+        .header-image {
+            display: inline-block;
+            max-width: 500px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 50px; /* Add some spacing between image and text */
+        }
+        nav {
+            text-align: right; /* Align the navigation links to the right */
+            margin-top: 10px; /* Add some spacing between the header image and the navigation */
+        }
+        nav ul {
+            list-style-type: none; /* Remove bullet points from the list */
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline; /* Display list items horizontally */
+            margin-left: 10px; /* Add some spacing between the list items */
+        }
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: black; /* Set the color of the links */
+            padding: 5px 10px; /* Add padding to the links */
+            border: 1px solid black; /* Add a border to the links */
+        }
+    </style>
 </head>
 <body>
-    <!-- Your content goes here -->
+    <header>
+        <div class="header-container">
+            <img class="header-image" src="Header_logo.jpg" alt="Library Logo">
+            <h1>Welcome to Vemana Library</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="catalog.html">Browse</a></li>
+                <li><a href="login.html">Login</a></li>
+				<li><a href="settings.html">settings</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Main content goes here -->
+    </main>
+
+    <footer>
+        <!-- Footer content goes here -->
+    </footer>
 </body>
 </html>
