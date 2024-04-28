@@ -1,51 +1,65 @@
-<?php
-// Database connection
-$servername = "localhost"; // Change this to your database server hostname
-$username = "username"; // Change this to your database username
-$password = "password"; // Change this to your database password
-$database = "dbname"; // Change this to your database name
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
-
-    // Validate input
-    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
-        echo "All fields are required.";
-    } elseif ($password != $confirm_password) {
-        echo "Passwords do not match.";
-    } else {
-        // Check if the username or email already exists in the database
-        $sql = "SELECT * FROM users WHERE username='$username' OR email='$email'";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            echo "Username or email already exists.";
-        } else {
-            // Hash the password before storing it in the database
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Insert user data into the database
-            $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
-            if ($conn->query($sql) === TRUE) {
-                echo "User registered successfully.";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../styles.css"> <!-- Link to your CSS file (assuming it's located in the root directory) -->
+    <style>
+        /* Inline styles for demonstration purposes. Replace with your external CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-    }
-}
-
-// Close database connection
-$conn->close();
-?>
+        .signup-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form action="../backend/signup.php" method="POST"> <!-- Point to the PHP script in the backend folder in the root directory -->
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</body>
+</html>
