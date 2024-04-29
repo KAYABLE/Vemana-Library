@@ -4,46 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <!-- Include Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js"></script>
-	<script src="signup.js"></script>
-    <script>
-        // Initialize Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyCJkLlGYLQMIoxMJnkbokcrtLZ56_Pi5M4",
-            authDomain: "vemana-library-users.firebaseapp.com",
-            projectId: "vemana-library-users",
-            storageBucket: "vemana-library-users.appspot.com",
-            messagingSenderId: "294570949026",
-            appId: ":294570949026:web:5717528205e58d57b75afb"
-        };
-        firebase.initializeApp(firebaseConfig);
-
-        // Function to handle sign up
-        function signUp() {
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // User signed up successfully
-                    const user = userCredential.user;
-                    console.log("User signed up:", user);
-                    // You can redirect the user to another page or perform other actions here
-                })
-                .catch((error) => {
-                    // Handle errors
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.error("Sign up error:", errorMessage);
-                });
-        }
-    </script>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
     <div class="signup-container">
         <h2>Sign Up</h2>
+        <!-- Signup form inputs -->
         <input type="text" id="username" placeholder="Username" required>
         <input type="text" id="universitySeatNumber" placeholder="University Seat Number" required>
         <input type="email" id="email" placeholder="Email" required>
@@ -54,7 +20,18 @@
         <input type="text" id="securityQuestion" placeholder="Security Question" required>
         <input type="text" id="securityAnswer" placeholder="Security Answer" required>
         <input type="password" id="password" placeholder="Password" required>
+        <!-- Add more input fields as needed -->
+
+        <!-- Button to trigger signup -->
         <button type="button" onclick="signUp()">Sign Up</button>
+
+        <!-- Signup complete prompt -->
+        <div id="signup-complete" style="display: none;">
+            <p>Signup complete!</p>
+            <p>You can now <a href="login.html">login</a> to access your account.</p>
+        </div>
     </div>
+
+    <script src="signup.js"></script> <!-- Include your signup.js file -->
 </body>
 </html>
