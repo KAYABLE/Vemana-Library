@@ -3,88 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vemana Library</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <link rel="icon" type="image/png" href="favicon.jpg">
-    <style>
-        /* Inline styles for demonstration purposes. Replace with your external CSS */
-        .header-container {
-            text-align: center;
-        }
-        .header-image {
-            display: inline-block;
-            max-width: 500px; /* Adjust the width as needed */
-            height: auto; /* Maintain aspect ratio */
-            margin-bottom: 50px; /* Add some spacing between image and text */
-        }
-        nav {
-            text-align: right; /* Align the navigation links to the right */
-            margin-top: 10px; /* Add some spacing between the header image and the navigation */
-        }
-        nav ul {
-            list-style-type: none; /* Remove bullet points from the list */
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline; /* Display list items horizontally */
-            margin-left: 10px; /* Add some spacing between the list items */
-        }
-        nav ul li a {
-            text-decoration: none; /* Remove underline from links */
-            color: black; /* Set the color of the links */
-            padding: 5px 10px; /* Add padding to the links */
-            border: 1px solid black; /* Add a border to the links */
-        }
-    </style>
-
-    <!-- Firebase SDK Initialization -->
-    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
-    <script>
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "firebase/app";
-        import { getAnalytics } from "firebase/analytics";
-
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyCJkLlGYLQMIoxMJnkbokcrtLZ56_Pi5M4",
-            authDomain: "vemana-library-users.firebaseapp.com",
-            projectId: "vemana-library-users",
-            storageBucket: "vemana-library-users.appspot.com",
-            messagingSenderId: "294570949026",
-            appId: "1:294570949026:web:5717528205e58d57b75afb",
-            measurementId: "G-CEHJ1K5VD2"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        //const analytics = getAnalytics(app); // If you need analytics, uncomment this line
-    </script>
+    <title>Library Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <img class="header-image" src="Header_logo.jpg" alt="Library Logo">
-            <h1>Welcome to Vemana Library</h1>
+        <div class="container">
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <!-- Add more links here -->
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="settings/settings.html">Settings</a></li>
-                <li><a href="login/login.html">Login</a></li>
-                <li><a href="signup/signup.html">Sign Up</a></li>
-                <li><a href="browse/browse.html">Browse</a></li>
-                <!-- Add more navigation links as needed -->
-            </ul>
-        </nav>
     </header>
 
-    <main>
-        <!-- Main content goes here -->
-    </main>
+    <div class="content">
+        <h1>Welcome to Our Library</h1>
+        <!-- Your content goes here -->
+    </div>
 
-    <footer>
-        <!-- Footer content goes here -->
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

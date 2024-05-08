@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -200px; /* Push it off-screen */
+    width: 200px; /* Set your desired width */
+    height: 100%;
+    background-color: #333; /* Background color of the menu */
+    transition: left 0.3s ease; /* Smooth transition effect */
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li {
+    margin: 20px 0;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: white; /* Text color of menu items */
+}
+
+.menu-toggle {
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+    position: absolute; /* Position the hamburger icon within the header */
+    top: 10px;
+    left: 10px;
+    z-index: 999; /* Ensure the button is above other elements */
+}
+
+.bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #fff; /* Color of the hamburger icon bars */
+    margin: 5px 0;
+    transition: background-color 0.3s ease; /* Add transition effect for hover */
+}
+
+/* Change color of bars when hovering over the hamburger icon */
+.menu-toggle:hover .bar {
+    background-color: #555;
+}
+
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu-toggle {
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+}
+
+.content {
+    padding: 20px;
+}
