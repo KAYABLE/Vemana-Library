@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vemana Library</title>
+    <title>Browse</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- Link to your CSS file -->
     <link rel="icon" type="image/png" href="images/B-icon.jpg">
 </head>
 <body>
     <header>
-        <div class="logo">VEMANA LIBRARY</div>
-        <button class="menu-toggle" onclick="openNav()">Menu</button>
+        <div class="logo">Vemana-Library</div>
+        <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
     </header>
     <nav class="sliding-menu">
         <ul>
@@ -21,8 +21,13 @@
         </ul>
     </nav>
     <main>
-        <!--test-->
-        Welcome
+        <h1>Browse Books</h1>
+        <div class="book-container">
+            <!-- Display thumbnails of PDFs -->
+            <a href="book-details.html?pdf=path/to/book1.pdf"><img src="path/to/thumbnail1.jpg" alt="Book 1"></a>
+            <a href="book-details.html?pdf=path/to/book2.pdf"><img src="path/to/thumbnail2.jpg" alt="Book 2"></a>
+            <!-- Add more book thumbnails as needed -->
+        </div>
     </main>
     <script src="js/script.js"></script>
 </body>
