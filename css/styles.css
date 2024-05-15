@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.menu-toggle {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.menu-toggle.menu-open::after {
+    content: "X"; /* Close icon (letter 'X') */
+}
+
+.menu-toggle.menu-open::before {
+    content: "Close"; /* Optionally, display 'Close' as a label */
+}
+
+.sliding-menu {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Adjust to move the menu to the right */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    padding-top: 60px;
+    transition: right 0.3s ease; /* Animate right property */
+}
+
+.sliding-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sliding-menu li {
+    padding: 10px;
+}
+
+.sliding-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+.logo {
+    text-align: center; /* Center align the logo */
+    margin: 0 auto; /* Center the logo horizontally */
+}
+
+/* Light Theme */
+body[data-theme="light"] {
+    background-color: #fff; /* Set background color for light theme */
+    color: #333; /* Set text color for light theme */
+}
+
+/* Dark Theme */
+body[data-theme="dark"] {
+    background-color: #333; /* Set background color for dark theme */
+    color: #fff; /* Set text color for dark theme */
+}
+
+/* Header styles for Dark Theme */
+body[data-theme="dark"] header {
+    background-color: #000; /* Set black background color for header in dark theme */
+}
+
+body[data-theme="light"] header {
+    background-color: #00c3ff; /* Set black background color for header in dark theme */
+}
