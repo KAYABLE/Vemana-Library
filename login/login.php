@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vemana Library</title>
+    <title>Login - Vemana Library</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- Link to your CSS file -->
     <link rel="icon" type="image/png" href="images/B-icon.jpg">
 </head>
@@ -12,16 +12,16 @@
         <div class="logo">VEMANA LIBRARY</div>
         <button class="menu-toggle" onclick="openNav()">Menu</button>
     </header>
-    <nav>
-        <ul>
-            <li><a href="settings/settings.html">Settings</a></li>
-            <li><a href="login/login.php">Login</a></li>
-            <li><a href="register/register.php">Register</a></li>
-            <li><a href="browse/browse.html">Browse</a></li>
-        </ul>
-    </nav>
     <main>
-        <p>Only signed-in users can access PDF files.</p>
+        <h2>Login</h2>
+        <form action="login_process.php" method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.php">Register here</a>.</p>
     </main>
     <footer>
         <p>&copy; 2024 Vemana Library</p>
