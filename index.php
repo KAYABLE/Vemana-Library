@@ -1,62 +1,59 @@
 <?php
 session_start();
+require 'profile/database.php';
+
+$userLoggedIn = isset($_SESSION['user_id']);
+$userProfilePic = null;
+
+if ($userLoggedIn) {
+    $userId = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT profile_pic FROM users WHERE id = ?");
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $stmt->bind_result($profilePicPath);
+    $stmt->fetch();
+    $userProfilePic = $profilePicPath ? $profilePicPath : 'images/default-pic.jpg';
+    $stmt->close();
+    $conn->close();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Vemana Library</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <title>Vemana Library</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" href="images/B-icon.jpg">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Vemana Library</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="settings/settings.php">Settings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="browse/browse.php">Browse</a>
-                    </li>
-                    <?php if (isset($_SESSION['user'])): ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="images/profile.jpg" alt="Profile" style="width: 30px; height: 30px; border-radius: 50%;"> <!-- Add your profile image here -->
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="dashboard/dashboard.php">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="dashboard/logout.php">Logout</a></li>
-                            </ul>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard/login.php">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard/register.php">Sign Up</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Logo</a>
+        <span class="navbar-text mx-auto">Vemana Library</span>
+        <div class="ml-auto">
+            <?php if ($userLoggedIn): ?>
+                <img src="<?php echo $userProfilePic; ?>" alt="Profile Picture" class="profile-pic rounded-circle mr-2">
+                <a href="profile/dashboard.php" class="btn btn-outline-secondary"><i class="fas fa-user-circle"></i> Profile</a>
+                <a href="auth/logout/logout.php" class="btn btn-outline-secondary"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <?php else: ?>
+                <a href="auth/login/login.php" class="btn btn-outline-secondary"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                <a href="auth/register/register.php" class="btn btn-outline-secondary"><i class="fas fa-user-plus"></i> Sign Up</a>
+            <?php endif; ?>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-nav mx-auto">
+            <a class="nav-item nav-link" href="browse/browse.php"><i class="fas fa-book"></i> Browse</a>
+            <a class="nav-item nav-link" href="search.php"><i class="fas fa-search"></i> Search</a>
+            <button class="btn btn-outline-secondary" id="dark-mode-toggle"><i class="fas fa-adjust"></i> Change Dark Mode</button>
         </div>
     </nav>
-    <div class="container mt-4">
-        <h2>Welcome to Vemana Library</h2>
-        <?php if (isset($_SESSION['user'])): ?>
-            <p>Welcome, <?php echo htmlspecialchars($_SESSION['user']); ?>!</p>
-            <p><a href="dashboard/dashboard.php" class="btn btn-primary">Go to Dashboard</a></p>
-        <?php else: ?>
-            <p>Please <a href="dashboard/login.php" class="btn btn-primary">log in</a> or <a href="dashboard/register.php" class="btn btn-secondary">register</a> to view the content.</p>
-        <?php endif; ?>
-    </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

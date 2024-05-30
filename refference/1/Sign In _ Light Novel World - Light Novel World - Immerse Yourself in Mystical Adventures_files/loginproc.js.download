@@ -1,0 +1,43 @@
+﻿jQuery.fn.protectSubmit = function () {
+    $(this).on('submit', function (e) {
+        var $form = $(this);
+        if ($form.data('submitted') === true) {
+            e.preventDefault();
+        } else {
+            if (!$form.valid()) {
+                e.preventDefault();
+            } else {
+                $form.data('submitted', true);
+                var $sbtn = $form.find("button[type='submit']");
+                $sbtn.addClass("_loading").attr("disabled", "disabled");
+            }
+        }
+    });
+
+    // Keep chainability
+    return this;
+};
+
+$(function () {
+
+    jQuery.validator.addMethod("alphanumeric", function (value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9_]+$/.test(value);
+    });
+
+    $('.i-eye').click(function () {
+        if ($('input[name=password]').attr('type') == 'password') {
+            $('input[name=confirmpassword]').attr('type', 'text');
+            $('input[name=password]').attr('type', 'text');
+        } else {
+            $('input[name=password]').attr('type', 'password');
+            $('input[name=confirmpassword]').attr('type', 'password');
+        }
+    });
+
+    // jQuery plugin to prevent double submission of forms
+    $("#loginForm").protectSubmit();
+    $("#signupForm").protectSubmit();
+    $("#forgotpwform").protectSubmit();
+    $("#resendEmailForm").protectSubmit();
+    $("#updatepasform").protectSubmit();
+});
